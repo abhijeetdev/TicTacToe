@@ -6,16 +6,15 @@
 //
 
 import UIKit
+import GroupActivities
+enum Turn
+{
+  case Nought
+  case Cross
+}
 
 class ViewController: UIViewController
 {
-  
-  enum Turn
-  {
-    case Nought
-    case Cross
-  }
-
   @IBOutlet weak var turnLabel: UILabel!
   
   @IBOutlet weak var a1: UIButton!
@@ -62,6 +61,17 @@ class ViewController: UIViewController
     {
       resultAlert(title: "Draw!")
     }
+  }
+  
+  @IBAction func handleGroupActivity(_ sender: UIButton)
+  {
+    Task{
+      if let activate = try? await PlayTogether().activate()
+      {
+        print("Play Together activate \(activate)")
+      }
+    }
+    
   }
   
   func resultAlert(title: String)
@@ -121,7 +131,43 @@ class ViewController: UIViewController
       }
     }
     
+    let id = board.firstIndex(of: sender)!
+    
+    if let messager = groupSessionMessenger
+    {
+      Task
+      {
+        try? await messager.send(PlayerMoveMessage(id: id, turn: turnLabel.text!))
+      }
+    }
+    
     sender.isEnabled = false
+  }
+  
+  var groupSession: GroupSession<PlayTogether>? = nil
+  var groupSessionMessenger: GroupSessionMessenger?
+  
+  override func viewDidAppear(_ animated: Bool)
+  {
+    Task {
+      for await session in PlayTogether.sessions()
+      {
+        self.groupSession = session
+        let messenger = GroupSessionMessenger(session: session)
+        self.groupSessionMessenger = messenger
+        
+        _ = Task {
+            for await (message, _) in messenger.messages(of: PlayerMoveMessage.self) {
+                handle(message)
+            }
+        }
+        groupSession?.join()
+      }
+    }
+  }
+  
+  func handle(_ message: PlayerMoveMessage) {
+    print("Hurrey!!! \(message.id) & Turn: \(message.turn)")
   }
   
 }

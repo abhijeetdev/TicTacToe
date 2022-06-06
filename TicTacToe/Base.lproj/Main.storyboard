@@ -142,17 +142,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Vr-9m-70v">
+                                <rect key="frame" x="20" y="122" width="52.5" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="personalhotspot" catalog="system"/>
+                                <connections>
+                                    <action selector="handleGroupActivity:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OCd-y8-ROc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="WiL-XN-QE7" firstAttribute="top" secondItem="v3x-VL-9Rb" secondAttribute="bottom" constant="8" symbolic="YES" id="AIL-Qd-fAO"/>
                             <constraint firstItem="v3x-VL-9Rb" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="VMO-CO-EFg"/>
+                            <constraint firstItem="WiL-XN-QE7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0Vr-9m-70v" secondAttribute="trailing" constant="8" symbolic="YES" id="WkI-QA-RMO"/>
                             <constraint firstItem="BSU-Ga-ETL" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="X2r-lW-Jfn"/>
+                            <constraint firstItem="0Vr-9m-70v" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0345982" id="Yq5-vu-uxu"/>
+                            <constraint firstItem="0Vr-9m-70v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ZnK-e4-cG5"/>
                             <constraint firstItem="BSU-Ga-ETL" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="Zvu-re-mrw"/>
                             <constraint firstItem="WiL-XN-QE7" firstAttribute="centerX" secondItem="v3x-VL-9Rb" secondAttribute="centerX" id="f67-I9-Mud"/>
                             <constraint firstItem="BSU-Ga-ETL" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="jyA-mM-WnG"/>
+                            <constraint firstItem="0Vr-9m-70v" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="78" id="lKG-aa-6B8"/>
                             <constraint firstItem="v3x-VL-9Rb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="of8-3j-S1M"/>
+                            <constraint firstItem="0Vr-9m-70v" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.126812" id="rOd-If-Rlh"/>
                         </constraints>
                     </view>
                     <connections>
@@ -174,6 +187,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="personalhotspot" catalog="system" width="128" height="75"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
